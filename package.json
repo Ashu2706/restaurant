@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
     "counterup2": "^2.0.2",
     "react": "^19.0.0",
