@@ -1,0 +1,33 @@
+@import '../../assets/styles/variables.scss';
+.service-item {
+    box-shadow: 0 0 40px rgba(0, 0, 0, .08);
+    transition: 0.5s;
+    
+    .service-icon{
+        color: $primary;
+    }
+
+    &:hover {
+        background: $primary;
+        * {
+            color: $light; //change color of all the children when user hover on service-item
+        }
+    }
+    
+    *{
+        transition: .5s; //transition for all the children of service-item
+    }
+    
+}
+
+// .service-item:hover {
+//     background: $primary;
+// }
+
+// .service-item * {
+//     transition: .5s;
+// }
+
+// .service-item:hover * { //all the child elements
+//     color: $light; //icons color not overiding without important
+// }

@@ -1,0 +1,51 @@
+.team-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    height: calc(100% - 38px);
+    transition: .5s;
+    overflow: hidden; //overflow is hidden it is still there but is not visible, it is not like display none
+    border-radius: 4px;
+    @media(max-width: 767px) {
+        width: 80%;
+        margin: 0 auto;
+    }
+    img{
+        width: 100%;
+        transition: .5s;
+        @media (max-width: 767px) {
+            width: 70%;
+        }
+    }
+    &:hover{
+        height: 100%;
+        img{
+            transform: scale(1.1);
+        }
+    }
+    .btn {
+        border-radius: 38px 38px 0 0;
+    }
+}
+
+// .team-item {
+//     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+//     height: calc(100% - 38px);
+//     transition: .5s;
+//     overflow: hidden;
+//     border-radius: 4px;
+// }
+
+// .team-item img {
+//     transition: .5s;
+// }
+
+// .team-item:hover img {
+//     transform: scale(1.1);
+// }
+
+// .team-item:hover {
+//     height: 100%;
+// }
+
+// .team-item .btn {
+//     border-radius: 38px 38px 0 0;
+// }

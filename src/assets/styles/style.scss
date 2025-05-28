@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+a{
+    cursor: pointer;
+    display: inline-block;
+}
+.my-container {
+    padding: 24px;
+    margin-bottom: 16px;
+
+    @media (min-width: 992px) {
+        padding: 32px;
+        margin-bottom: 48px;
+    }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, .5) !important;
+}
+
+.w-85 {
+    width: 100%;
+    @media (min-width: 992px) {
+        width: 85%;
+    }
+}
+.ff-secondary {
+    font-family: "Pacifico", cursive;
+}
+
+.fw-medium {
+    font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+    font-weight: 700 !important;
+}
+
+
+/*** Button ***/
+.btn {
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #ffffff;
+    &:active,
+    &:hover {
+        color: #ffffff !important;
+    }
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 2px;
+}
