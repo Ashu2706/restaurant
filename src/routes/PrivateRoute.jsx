@@ -6,7 +6,7 @@ const PrivateRoute = () => {
   const {isAuthenticated} = useContext(AuthContext);
   return (
     <>
-    <h1 style={{paddingTop: "100px"}}>Prive Route Template</h1>
+    {/* <h1 style={{paddingTop: "100px"}}>Prive Route Template</h1> */}
     {isAuthenticated ? <Outlet /> : <Navigate to="/"/>} 
     {/* If not authenticated, redirect to login page
     

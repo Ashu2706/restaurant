@@ -15,11 +15,15 @@ import Team from './Pages/Team';
 import Testimonial from './Pages/Testimonial';
 import { Cookies } from 'react-cookie';
 import fetchCart from './api/fetchCart';
-
+import AddToCart from './components/AddToCart/AddToCart';
+import Order from './components/Order/Order';
 export const AuthContext = createContext();
+export const CartContext = createContext();
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const [cart, setCart] = useState([]);
 
   const checkAuth = () => {
@@ -49,9 +53,9 @@ function App() {
   useEffect(() => {
     initializeCart();
   }, [isAuthenticated])
-  
+
   useEffect(() => {
-    
+
     // Check authentication status on load (first time) and periodically
     checkAuth();
     setInterval(checkAuth, 60000);//every 1 minute
@@ -64,38 +68,43 @@ function App() {
   return (
     <>
       <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-        <div className="container-xxl bg-white p-0">
-          <div className="position-relative p-0">
-            <Navbar />
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
+        <CartContext.Provider value={{ cart, setCart }}>
+          <div className="container-xxl bg-white p-0">
+            <div className="position-relative p-0">
+              <Navbar setIsSidebarOpen={setIsSidebarOpen}/> {/*Keep things here that will be common in every page */}
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
 
-              {/* Private Routes */}
-              <Route element={<PrivateRoute />}>
-                <Route path="/team" element={<Team />} />
-                <Route path="/testimonial" element={<Testimonial />} />
-              </Route>
-              {/* Page not found */}
-              <Route path="*" element={<h1>404 Page Not Found</h1>} />
-            </Routes>
-            {/*======== Modals and overlays ========  */}
-            <Login />
-            <LoginMessage />
-            <Signup />
-            <ToastContainer
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={false}
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-            <Footer />
+                {/* Private Routes */}
+                <Route element={<PrivateRoute />}>
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/testimonial" element={<Testimonial />} />
+                </Route>
+                {/* Page not found */}
+                <Route path="*" element={<h1>404 Page Not Found</h1>} />
+              </Routes>
+              {/*======== Modals and overlays ========  */}
+              <Login />
+              <LoginMessage />
+              <Signup />
+              <Order isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+
+              <ToastContainer
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <AddToCart />
+              <Footer />
+            </div>
           </div>
-        </div>
+        </CartContext.Provider>
       </AuthContext.Provider>
     </>
   )

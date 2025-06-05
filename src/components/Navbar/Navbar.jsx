@@ -4,9 +4,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
 import { AuthContext } from '../../App';
 
-export const Navbar = () => {
+export const Navbar = ({ setIsSidebarOpen }) => {
   const [showLoginMsg, setShowLoginMsg] = useState(false);
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const handleHamburger = () => {
@@ -140,7 +140,11 @@ export const Navbar = () => {
           }
           {
             isAuthenticated ?
-              <div className="nav-item nav-link">Order</div>
+              <div className="nav-item nav-link"
+                onClick={() => {
+                  setIsSidebarOpen(true) 
+                }}
+              >Order</div>
               :
               // open show login Msg Modal
               <div

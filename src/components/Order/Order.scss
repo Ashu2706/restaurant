@@ -1,0 +1,56 @@
+.order-overlay{
+  position:fixed;
+  top: 0;
+  left: 0; //try to comment it and see what happens
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: background-color 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0);
+  &.show{
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+}
+/* Sidebar container styling */
+.order-sidebar {
+    position: fixed;
+    top: 0;
+    right: -110%; /* Initially hidden */
+    width: 320px;
+    // height: 100vh;
+    height: 100%;
+    background-color: #f8f9fa;
+    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 1050;
+    overflow-y: auto;
+    /* When the sidebar is active */
+    &.show {
+      right: 0; /* Slide into view */
+    }
+    /* Sidebar Header */
+    .order-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    /* Sidebar Body */
+    .order-sidebar-body {
+      padding: 15px;
+      
+      .list-group-item {
+        border: none; /* Clean look */
+        margin-bottom: 12px;
+        padding: 14px 16px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  
+  

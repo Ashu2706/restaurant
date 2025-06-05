@@ -1,0 +1,14 @@
+.btn-remove-item{
+    display: none;
+}
+.cart-item-container{
+    &:hover{
+        .btn-remove-item{
+            display: inline-block;
+        }
+    }
+}
+
+.cart-item-heading{
+    font-size: 18px;
+}

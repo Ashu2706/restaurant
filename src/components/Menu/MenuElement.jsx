@@ -1,21 +1,30 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../App';
-import { toast, Zoom } from 'react-toastify';
+import React, { useContext, useState } from 'react'
+import addToCart from '../../api/addToCart';
+import { AuthContext, CartContext } from '../../App';
+import fetchCart from '../../api/fetchCart';
+import Loader from '../Loader/Loader';
+
 export const MenuElement = ({ menu, setMenu, setShowLoginMsg }) => {
+    const { setCart } = useContext(CartContext);
     const { isAuthenticated } = useContext(AuthContext);
+    const [loader, setLoader] = useState(false);
 
     const handleAddToCart = async (item) => {
-        if(!isAuthenticated){
-            toast.error("Please login to add items to cart", {
-                position: "top-center",
-                autoClose: 3000,
-                theme: "light",
-                transition: Zoom,
-            });
+        if (!isAuthenticated) {
+            setShowLoginMsg(true);
             return;
         }
-
+        setLoader(true);
+        const data = await addToCart(item);
+        console.log("Add To Cart Response: ",data);
+        if(data){
+            const updatedCart = await fetchCart();
+            if(updatedCart)
+                setCart(updatedCart);
+        }
+        setLoader(false);
     }
+
     const handleSubtract = (item) => {
         if (item?.quantity === 1)
             return
@@ -88,7 +97,7 @@ export const MenuElement = ({ menu, setMenu, setShowLoginMsg }) => {
                             <div className="d-flex mt-2">
                                 <button className="btn-subtract" onClick={() => handleSubtract(recipe)}>-</button>
                                 <div className="btn-quantity">{recipe?.quantity}</div>
-                                <button className="btn-add" onClick={() => { handleAdd(recipe) }}>+</button>
+                                <button className="btn-add" onClick={() => handleAdd(recipe)}>+</button>
                             </div>
                             <button className="btn-cart" onClick={
                                 () => {
@@ -97,6 +106,7 @@ export const MenuElement = ({ menu, setMenu, setShowLoginMsg }) => {
                             }>Add To Cart</button>
                         </div>
                     </div>
+                    <Loader  isActive={loader}/>
                 </div>
             )
         })
