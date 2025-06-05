@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './order.scss'
+import './Order.scss'
 import LoginMessage from '../LoginMessage/LoginMessage';
 const Order = ({ isSidebarOpen, setIsSidebarOpen }) => {
     // Sample orders data
